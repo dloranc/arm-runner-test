@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: pguyot/arm-runner-action@v2
+      - uses: pguyot/arm-runner-action@main
         id: build_image
         with:
-          base_image: "raspi_4_bullseye:20230102"
+          base_image: "raspios_lite_arm64:2023-05-03"
           commands: |
             echo "Hello World!" > test_command
             chmod +x test_command
