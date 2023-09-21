@@ -11,8 +11,13 @@ jobs:
         with:
           base_image: "raspios_lite_arm64:2023-05-03"
           commands: |
-            echo "Hello World!" > test_command
-            chmod +x test_command
+            echo "#include <iostream>" > main.cpp
+            echo "int main() {" >> main.cpp
+            echo "  std::cout << \"Hello, World!\" << std::endl;" >> main.cpp
+            echo "  return 0;" >> main.cpp
+            echo "}" >> main.cpp
+            g++ -o main main.cpp
+            ./main
       - name: Compress the release image
         run: |
           mv ${{ steps.build_image.outputs.image }} my-release-image.img
