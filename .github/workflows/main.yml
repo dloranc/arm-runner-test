@@ -1,5 +1,4 @@
 name: arm-runner-workflow
-run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
   build:
@@ -18,6 +17,7 @@ jobs:
             echo "}" >> main.cpp
             g++ -o main main.cpp
             ./main
+            uname -srm
       - name: Compress the release image
         run: |
           mv ${{ steps.build_image.outputs.image }} my-release-image.img
